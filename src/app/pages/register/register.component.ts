@@ -1,6 +1,7 @@
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { DatingAppService } from '../../services/dating-app.service';
 import { DateserviceService } from '../../services/dateservice.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -25,10 +26,23 @@ export class RegisterComponent implements OnInit {
   register()
   {
     this.sercivio.SaveUser(this.model).subscribe(resp=>{
-      this.print(resp);
+    if(resp.error)
+    {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: resp.error,
+        
+      })
+    }
           this.cancel();
     },error=>{
-      this.print(error);
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.error,
+        
+      })
     });
 
    
