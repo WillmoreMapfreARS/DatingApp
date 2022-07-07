@@ -6,19 +6,22 @@
         <span class="navbar-toggler-icon"></span>
       </button>
         <div class="collapse navbar-collapse " id="navbarCollapse">
-            <ul *ngIf="sercicio.currentUser$  | async" class="navbar-nav me-auto mb-2 mb-md-0">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                <ng-container *ngIf="sercicio.currentUser$  | async">
+
+                    <li class="nav-item">
+                        <a class="nav-link " routerLinkActive="active" routerLink="/members" aria-current="page" href="#">Matches</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="lists">Lists</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLinkActive="active" routerLink="messages">Messages</a>
+                    </li>
+                </ng-container>
                 <li class="nav-item">
-                    <a class="nav-link " routerLinkActive="active" routerLink="/members" aria-current="page" href="#">Matches</a>
+                    <a class="nav-link" routerLinkActive="active" routerLink="errors">Errors</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" routerLink="lists">Lists</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLinkActive="active" routerLink="messages">Messages</a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a class="nav-link" (click)="logout()">Logout</a>
-                </li> -->
             </ul>
             <div class="dropdown" *ngIf="(sercicio.currentUser$ | async) as u" dropdown>
                 <a href (click)="false" class="dropdown-toggle text-light" dropdownToggle>Wellcome {{u.userName | titlecase}}</a>
